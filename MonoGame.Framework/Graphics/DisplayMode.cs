@@ -64,7 +64,15 @@ namespace Microsoft.Xna.Framework.Graphics
         }
         
         public Rectangle TitleSafeArea {
-            get { return new Rectangle(0, 0, Width, Height); }    
+            get
+            {
+                var safeX = (width + 19) / 20;
+                var safeY = (height + 19) / 20;
+
+                var safeW = width - safeX * 2;
+                var safeH = height - safeY * 2;
+                return new Rectangle(safeX, safeY, safeW, safeH);
+            }
         }
 
         #endregion Properties
@@ -118,7 +126,7 @@ namespace Microsoft.Xna.Framework.Graphics
 
         public override string ToString()
         {
-            return "{{Width:" + this.width + " Height:" + this.height + " Format:" + this.Format + "}}";
+            return "{Width:" + this.width + " Height:" + this.height + " Format:" + this.Format + " AspectRatio:" + this.AspectRatio + "}";
         }
 
         #endregion Public Methods
